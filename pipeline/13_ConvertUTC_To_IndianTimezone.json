@@ -1,0 +1,32 @@
+{
+	"name": "13_ConvertUTC_To_IndianTimezone",
+	"properties": {
+		"activities": [
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "timezone",
+					"value": {
+						"value": "@convertTimeZone(utcNow(),'utc','India Standard Time')",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"variables": {
+			"timezone": {
+				"type": "String"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2025-12-22T17:07:39Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

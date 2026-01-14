@@ -1,0 +1,143 @@
+{
+	"name": "11_CopyOnlyTodayDateFile_CopyActivityAndDatefunctions",
+	"properties": {
+		"activities": [
+			{
+				"name": "getCurrDate",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "currentDate",
+					"value": {
+						"value": "@utcNow()",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "getFormatedDate",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "getCurrDate",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "FormatedDate",
+					"value": {
+						"value": "@formatDateTime(variables('currentDate'),'ddMMyyy')",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "GetConcatedFileName",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "getFormatedDate",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "srcFileName",
+					"value": {
+						"value": "@concat('orders_',variables('FormatedDate'),'.txt')",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "GetConcatedFileName",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "BinarySource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true
+						},
+						"formatSettings": {
+							"type": "BinaryReadSettings"
+						}
+					},
+					"sink": {
+						"type": "BinarySink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						}
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "src_param_pipe11",
+						"type": "DatasetReference",
+						"parameters": {
+							"fileName": {
+								"value": "@variables('srcFileName')",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "sink_pipe10",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"variables": {
+			"FormatedDate": {
+				"type": "String"
+			},
+			"currentDate": {
+				"type": "String"
+			},
+			"srcFileName": {
+				"type": "String"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2025-12-22T16:15:08Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

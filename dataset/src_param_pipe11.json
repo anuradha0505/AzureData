@@ -1,0 +1,28 @@
+{
+	"name": "src_param_pipe11",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS1_gen2",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"fileName": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().fileName",
+					"type": "Expression"
+				},
+				"folderPath": "in_3",
+				"fileSystem": "container2"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

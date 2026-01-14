@@ -1,0 +1,58 @@
+{
+	"name": "5_CopyActivity_With_Multi_Parameters",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "BinarySource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true
+						},
+						"formatSettings": {
+							"type": "BinaryReadSettings"
+						}
+					},
+					"sink": {
+						"type": "BinarySink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						}
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "DS_Src_multipara",
+						"type": "DatasetReference",
+						"parameters": {
+							"foldername": "in_2",
+							"filename": "orders.txt"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DS_Sink_multipara",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2025-12-22T12:34:18Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

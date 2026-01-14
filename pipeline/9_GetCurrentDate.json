@@ -1,0 +1,32 @@
+{
+	"name": "9_GetCurrentDate",
+	"properties": {
+		"activities": [
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "dt",
+					"value": {
+						"value": "@formatDateTime(utcNow(),'ddMMyy')",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"variables": {
+			"dt": {
+				"type": "String"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2025-12-22T15:18:07Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

@@ -1,0 +1,19 @@
+{
+	"name": "DS_src_1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS1_gen2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "inbound1",
+				"fileSystem": "container1"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

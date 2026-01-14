@@ -1,0 +1,19 @@
+{
+	"name": "Src_Getmeta_pipe26",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS1_gen2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "in_2",
+				"fileSystem": "container3"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

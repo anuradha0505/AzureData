@@ -1,0 +1,128 @@
+{
+	"name": "2_Set Variable Activity",
+	"properties": {
+		"activities": [
+			{
+				"name": "getName",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "name",
+					"value": "Anuradha"
+				}
+			},
+			{
+				"name": "getAge",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "getName",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "age",
+					"value": 27
+				}
+			},
+			{
+				"name": "getGender",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "getAge",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "gender",
+					"value": "female"
+				}
+			},
+			{
+				"name": "getMsg",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "getLocation",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "msg",
+					"value": {
+						"value": "@concat('Person name is ',variables('name'),', age is ',variables('age'),', gender is ',variables('gender'),' and location is ',variables('location'))",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "getLocation",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "getGender",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "location",
+					"value": "Pune"
+				}
+			}
+		],
+		"variables": {
+			"name": {
+				"type": "String"
+			},
+			"age": {
+				"type": "Integer"
+			},
+			"gender": {
+				"type": "String"
+			},
+			"location": {
+				"type": "String"
+			},
+			"msg": {
+				"type": "String"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2025-12-19T15:42:45Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

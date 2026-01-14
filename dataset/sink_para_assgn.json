@@ -1,0 +1,27 @@
+{
+	"name": "sink_para_assgn",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS1_gen2",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"foldername": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": {
+					"value": "@concat('out_assgn/',dataset().foldername)",
+					"type": "Expression"
+				},
+				"fileSystem": "container4"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

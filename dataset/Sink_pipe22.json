@@ -1,0 +1,19 @@
+{
+	"name": "Sink_pipe22",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS1_gen2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "outbound/flaten_out",
+				"fileSystem": "container3"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
