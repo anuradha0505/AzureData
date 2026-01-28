@@ -1,0 +1,9 @@
+{
+	"name": "anuzpdf25",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "e0629323-694c-445a-8218-c5102bc94f28",
+		"tenantId": "f6104d55-f5a1-48d1-8c3c-21f980830981"
+	}
+}
