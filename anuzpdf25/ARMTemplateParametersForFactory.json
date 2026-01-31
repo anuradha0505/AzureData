@@ -1,0 +1,63 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "anuzpdf25"
+		},
+		"LS1_gen2_accountKey": {
+			"value": ""
+		},
+		"LS2_GEN2_accountKey": {
+			"value": ""
+		},
+		"LS_AzureSqlDatabase1_password": {
+			"value": ""
+		},
+		"LS_New_Gen2_AzureDataLakeStorage1_accountKey": {
+			"value": ""
+		},
+		"LS_new_AzureSqlDatabase1_password": {
+			"value": ""
+		},
+		"LS1_gen2_properties_typeProperties_url": {
+			"value": "https://anuazurestore1.dfs.core.windows.net/"
+		},
+		"LS2_GEN2_properties_typeProperties_url": {
+			"value": "https://anuazurestore1.dfs.core.windows.net/"
+		},
+		"LS_AzureSqlDatabase1_properties_typeProperties_server": {
+			"value": "anusqlserver1.database.windows.net"
+		},
+		"LS_AzureSqlDatabase1_properties_typeProperties_database": {
+			"value": "anusqldatabase1"
+		},
+		"LS_AzureSqlDatabase1_properties_typeProperties_userName": {
+			"value": "sqladmin"
+		},
+		"LS_AzureSqlDatabase1_withKeyVault_properties_typeProperties_server": {
+			"value": "anusqlserver1.database.windows.net"
+		},
+		"LS_AzureSqlDatabase1_withKeyVault_properties_typeProperties_database": {
+			"value": "anusqldatabase1"
+		},
+		"LS_AzureSqlDatabase1_withKeyVault_properties_typeProperties_userName": {
+			"value": "sqladmin"
+		},
+		"LS_New_Gen2_AzureDataLakeStorage1_properties_typeProperties_url": {
+			"value": "https://anuzpstr1.dfs.core.windows.net/"
+		},
+		"LS_new_AzureSqlDatabase1_properties_typeProperties_server": {
+			"value": "anuzpsqlserver.database.windows.net"
+		},
+		"LS_new_AzureSqlDatabase1_properties_typeProperties_database": {
+			"value": "anusqldb2"
+		},
+		"LS_new_AzureSqlDatabase1_properties_typeProperties_userName": {
+			"value": "sqlserveradmin"
+		},
+		"LS_sqldb_AzureKeyVault1_properties_typeProperties_baseUrl": {
+			"value": "https://anukeyvalut1.vault.azure.net/"
+		}
+	}
+}
