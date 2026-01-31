@@ -1,0 +1,25 @@
+{
+	"name": "DS_dept_dtls_sql",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_new_AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "deptid",
+				"type": "varchar"
+			},
+			{
+				"name": "deptname",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "dept_dtls"
+		}
+	}
+}
