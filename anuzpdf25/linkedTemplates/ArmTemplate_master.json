@@ -59,9 +59,25 @@
 			"type": "string",
 			"defaultValue": "sqladmin"
 		},
+		"LS_AzureSqlDatabase_KV_new_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "anuzpsqlserver.database.windows.net"
+		},
+		"LS_AzureSqlDatabase_KV_new_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "anusqldb2"
+		},
+		"LS_AzureSqlDatabase_KV_new_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "sqlserveradmin"
+		},
 		"LS_New_Gen2_AzureDataLakeStorage1_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://anuzpstr1.dfs.core.windows.net/"
+		},
+		"LS_anusqldb2AzureKeyVault_new_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://AzrKeyVaultNew.vault.azure.net/"
 		},
 		"LS_new_AzureSqlDatabase1_properties_typeProperties_server": {
 			"type": "string",
@@ -138,6 +154,9 @@
 					},
 					"LS_New_Gen2_AzureDataLakeStorage1_properties_typeProperties_url": {
 						"value": "[parameters('LS_New_Gen2_AzureDataLakeStorage1_properties_typeProperties_url')]"
+					},
+					"LS_anusqldb2AzureKeyVault_new_properties_typeProperties_baseUrl": {
+						"value": "[parameters('LS_anusqldb2AzureKeyVault_new_properties_typeProperties_baseUrl')]"
 					},
 					"LS_new_AzureSqlDatabase1_properties_typeProperties_server": {
 						"value": "[parameters('LS_new_AzureSqlDatabase1_properties_typeProperties_server')]"
@@ -217,6 +236,15 @@
 					},
 					"LS_AzureSqlDatabase1_withKeyVault_properties_typeProperties_userName": {
 						"value": "[parameters('LS_AzureSqlDatabase1_withKeyVault_properties_typeProperties_userName')]"
+					},
+					"LS_AzureSqlDatabase_KV_new_properties_typeProperties_server": {
+						"value": "[parameters('LS_AzureSqlDatabase_KV_new_properties_typeProperties_server')]"
+					},
+					"LS_AzureSqlDatabase_KV_new_properties_typeProperties_database": {
+						"value": "[parameters('LS_AzureSqlDatabase_KV_new_properties_typeProperties_database')]"
+					},
+					"LS_AzureSqlDatabase_KV_new_properties_typeProperties_userName": {
+						"value": "[parameters('LS_AzureSqlDatabase_KV_new_properties_typeProperties_userName')]"
 					}
 				}
 			},

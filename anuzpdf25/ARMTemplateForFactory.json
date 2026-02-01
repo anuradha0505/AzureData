@@ -59,9 +59,25 @@
 			"type": "string",
 			"defaultValue": "sqladmin"
 		},
+		"LS_AzureSqlDatabase_KV_new_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "anuzpsqlserver.database.windows.net"
+		},
+		"LS_AzureSqlDatabase_KV_new_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "anusqldb2"
+		},
+		"LS_AzureSqlDatabase_KV_new_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "sqlserveradmin"
+		},
 		"LS_New_Gen2_AzureDataLakeStorage1_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://anuzpstr1.dfs.core.windows.net/"
+		},
+		"LS_anusqldb2AzureKeyVault_new_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://AzrKeyVaultNew.vault.azure.net/"
 		},
 		"LS_new_AzureSqlDatabase1_properties_typeProperties_server": {
 			"type": "string",
@@ -3046,6 +3062,90 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/36_LookupActivity')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Lookup1",
+						"type": "Lookup",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "AzureSqlSource",
+								"sqlReaderQuery": "insert into dept_dtls values ('D5','networking')",
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"dataset": {
+								"referenceName": "DS_lookup_dept_dtls",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/DS_lookup_dept_dtls')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/37_ScriptActivity')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Script1",
+						"type": "Script",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"linkedServiceName": {
+							"referenceName": "LS_AzureSqlDatabase_KV_new",
+							"type": "LinkedServiceReference"
+						},
+						"typeProperties": {
+							"scripts": [
+								{
+									"type": "Query",
+									"text": "insert into dept_dtls values ('D6','networking');"
+								}
+							],
+							"scriptBlockExecutionTimeout": "02:00:00"
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/LS_AzureSqlDatabase_KV_new')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/3_CopyActivity')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
@@ -4375,6 +4475,36 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/DS_lookup_dept_dtls')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "LS_AzureSqlDatabase_KV_new",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "deptid",
+						"type": "varchar"
+					},
+					{
+						"name": "deptname",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "dept_dtls"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/LS_AzureSqlDatabase_KV_new')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/DS_src_1')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -5574,6 +5704,34 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/LS_AzureSqlDatabase_KV_new')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureSqlDatabase",
+				"typeProperties": {
+					"server": "[parameters('LS_AzureSqlDatabase_KV_new_properties_typeProperties_server')]",
+					"database": "[parameters('LS_AzureSqlDatabase_KV_new_properties_typeProperties_database')]",
+					"encrypt": "mandatory",
+					"trustServerCertificate": false,
+					"authenticationType": "SQL",
+					"userName": "[parameters('LS_AzureSqlDatabase_KV_new_properties_typeProperties_userName')]",
+					"password": {
+						"type": "AzureKeyVaultSecret",
+						"store": {
+							"referenceName": "LS_anusqldb2AzureKeyVault_new",
+							"type": "LinkedServiceReference"
+						},
+						"secretName": "sqlpwd"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/LS_anusqldb2AzureKeyVault_new')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/LS_New_Gen2_AzureDataLakeStorage1')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -5586,6 +5744,19 @@
 						"type": "SecureString",
 						"value": "[parameters('LS_New_Gen2_AzureDataLakeStorage1_accountKey')]"
 					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/LS_anusqldb2AzureKeyVault_new')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureKeyVault",
+				"typeProperties": {
+					"baseUrl": "[parameters('LS_anusqldb2AzureKeyVault_new_properties_typeProperties_baseUrl')]"
 				}
 			},
 			"dependsOn": []

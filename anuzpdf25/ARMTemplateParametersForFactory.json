@@ -44,8 +44,20 @@
 		"LS_AzureSqlDatabase1_withKeyVault_properties_typeProperties_userName": {
 			"value": "sqladmin"
 		},
+		"LS_AzureSqlDatabase_KV_new_properties_typeProperties_server": {
+			"value": "anuzpsqlserver.database.windows.net"
+		},
+		"LS_AzureSqlDatabase_KV_new_properties_typeProperties_database": {
+			"value": "anusqldb2"
+		},
+		"LS_AzureSqlDatabase_KV_new_properties_typeProperties_userName": {
+			"value": "sqlserveradmin"
+		},
 		"LS_New_Gen2_AzureDataLakeStorage1_properties_typeProperties_url": {
 			"value": "https://anuzpstr1.dfs.core.windows.net/"
+		},
+		"LS_anusqldb2AzureKeyVault_new_properties_typeProperties_baseUrl": {
+			"value": "https://AzrKeyVaultNew.vault.azure.net/"
 		},
 		"LS_new_AzureSqlDatabase1_properties_typeProperties_server": {
 			"value": "anuzpsqlserver.database.windows.net"

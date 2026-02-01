@@ -51,6 +51,10 @@
 			"type": "string",
 			"defaultValue": "https://anuzpstr1.dfs.core.windows.net/"
 		},
+		"LS_anusqldb2AzureKeyVault_new_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://AzrKeyVaultNew.vault.azure.net/"
+		},
 		"LS_new_AzureSqlDatabase1_properties_typeProperties_server": {
 			"type": "string",
 			"defaultValue": "anuzpsqlserver.database.windows.net"
@@ -608,6 +612,19 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/LS_anusqldb2AzureKeyVault_new')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureKeyVault",
+				"typeProperties": {
+					"baseUrl": "[parameters('LS_anusqldb2AzureKeyVault_new_properties_typeProperties_baseUrl')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/LS_new_AzureSqlDatabase1')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -849,36 +866,6 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/LS_New_Gen2_AzureDataLakeStorage1')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/DS_dept_dtls_sql')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "LS_new_AzureSqlDatabase1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "deptid",
-						"type": "varchar"
-					},
-					{
-						"name": "deptname",
-						"type": "varchar"
-					}
-				],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "dept_dtls"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/LS_new_AzureSqlDatabase1')]"
 			]
 		}
 	]
