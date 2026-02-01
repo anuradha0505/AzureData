@@ -15,14 +15,10 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"storedProcedureName": "[dbo].[insertdata1]",
+					"storedProcedureName": "[dbo].[getdata]",
 					"storedProcedureParameters": {
-						"deptname": {
-							"value": "D9",
-							"type": "String"
-						},
 						"id": {
-							"value": "auditing",
+							"value": "D5",
 							"type": "String"
 						}
 					}

@@ -22,7 +22,7 @@
 					"scripts": [
 						{
 							"type": "Query",
-							"text": "insert into dept_dtls values ('D6','networking');"
+							"text": "select * from dept_dtls;"
 						}
 					],
 					"scriptBlockExecutionTimeout": "02:00:00"
