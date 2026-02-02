@@ -1,0 +1,41 @@
+{
+	"name": "Source_csv_files_for_pipe42",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_New_Gen2_AzureDataLakeStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"filenamepara": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().filenamepara",
+					"type": "Expression"
+				},
+				"folderPath": "inbound_0202/inbound_1",
+				"fileSystem": "container1"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "cust_id",
+				"type": "String"
+			},
+			{
+				"name": "cust_name",
+				"type": "String"
+			}
+		]
+	}
+}

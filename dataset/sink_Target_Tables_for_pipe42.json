@@ -1,0 +1,24 @@
+{
+	"name": "sink_Target_Tables_for_pipe42",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_new_AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"targettablepara": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": {
+				"value": "@dataset().targettablepara",
+				"type": "Expression"
+			}
+		}
+	}
+}
