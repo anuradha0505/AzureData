@@ -1,0 +1,18 @@
+{
+	"name": "Src_pipe43",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_New_Gen2_AzureDataLakeStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "inbound_0202/inbound_1",
+				"fileSystem": "container1"
+			}
+		}
+	}
+}
