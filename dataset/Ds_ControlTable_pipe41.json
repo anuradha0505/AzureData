@@ -1,0 +1,25 @@
+{
+	"name": "Ds_ControlTable_pipe41",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_new_AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "filename",
+				"type": "varchar"
+			},
+			{
+				"name": "tablename",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "control_tbl"
+		}
+	}
+}

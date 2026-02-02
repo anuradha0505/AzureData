@@ -1,10 +1,10 @@
 {
-	"name": "pipeline1",
+	"name": "40_LookUp_With_ForEach",
 	"properties": {
 		"activities": [
 			{
-				"name": "Get Metadata1",
-				"type": "GetMetadata",
+				"name": "Lookup1",
+				"type": "Lookup",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "0.12:00:00",
@@ -15,38 +15,89 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
 					"dataset": {
-						"referenceName": "DS_dept_csv",
+						"referenceName": "Ds_dept_dtls_pipe40",
 						"type": "DatasetReference"
 					},
-					"fieldList": [
-						"itemName"
-					],
-					"storeSettings": {
-						"type": "AzureBlobStorageReadSettings",
-						"enablePartitionDiscovery": false
-					},
-					"formatSettings": {
-						"type": "DelimitedTextReadSettings"
-					}
+					"firstRowOnly": false
 				}
 			},
 			{
-				"name": "Lookup1",
-				"type": "Lookup",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
-				"dependsOn": [],
-				"policy": {
-					"timeout": "0.12:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": []
+				"name": "ForEach1",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Lookup1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('Lookup1').output.values",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "getdeptid",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"policy": {
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "id",
+								"value": {
+									"value": "@item().deptid",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "getdeptname",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "getdeptid",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "name",
+								"value": {
+									"value": "@item().deptname",
+									"type": "Expression"
+								}
+							}
+						}
+					]
+				}
 			}
 		],
+		"variables": {
+			"id": {
+				"type": "String"
+			},
+			"name": {
+				"type": "String"
+			}
+		},
 		"annotations": []
 	}
 }
