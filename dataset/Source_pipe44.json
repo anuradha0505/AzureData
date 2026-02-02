@@ -1,0 +1,19 @@
+{
+	"name": "Source_pipe44",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_New_Gen2_AzureDataLakeStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "orders.txt",
+				"folderPath": "inbound_0202/inbound_2",
+				"fileSystem": "container1"
+			}
+		}
+	}
+}
