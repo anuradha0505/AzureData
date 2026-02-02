@@ -1,5 +1,5 @@
 {
-	"name": "pipeline2",
+	"name": "43_UntilAcitivity_filepresent",
 	"properties": {
 		"activities": [
 			{
@@ -56,6 +56,7 @@
 								],
 								"storeSettings": {
 									"type": "AzureBlobStorageReadSettings",
+									"recursive": true,
 									"enablePartitionDiscovery": false
 								},
 								"formatSettings": {
@@ -76,6 +77,10 @@
 							],
 							"userProperties": [],
 							"typeProperties": {
+								"expression": {
+									"value": "@activity('Get Metadata1').output.exists",
+									"type": "Expression"
+								},
 								"ifFalseActivities": [
 									{
 										"name": "Wait1",
