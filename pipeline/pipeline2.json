@@ -29,6 +29,10 @@
 				],
 				"userProperties": [],
 				"typeProperties": {
+					"expression": {
+						"value": "@equals(variables('flag'),'true')",
+						"type": "Expression"
+					},
 					"activities": [
 						{
 							"name": "Set variable1",
