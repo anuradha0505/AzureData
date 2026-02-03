@@ -138,7 +138,13 @@
 									"type": "BinarySource",
 									"storeSettings": {
 										"type": "AzureBlobFSReadSettings",
-										"recursive": true
+										"recursive": true,
+										"wildcardFolderPath": "inboun_0302",
+										"wildcardFileName": {
+											"value": "@concat('*',variables('dt'),'*')",
+											"type": "Expression"
+										},
+										"deleteFilesAfterCompletion": false
 									},
 									"formatSettings": {
 										"type": "BinaryReadSettings"
@@ -155,13 +161,7 @@
 							"inputs": [
 								{
 									"referenceName": "Source_pipe45",
-									"type": "DatasetReference",
-									"parameters": {
-										"filepara": {
-											"value": "@activity('Filter1').output",
-											"type": "Expression"
-										}
-									}
+									"type": "DatasetReference"
 								}
 							],
 							"outputs": [
