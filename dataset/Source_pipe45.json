@@ -1,0 +1,22 @@
+{
+	"name": "Source_pipe45",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_New_Gen2_AzureDataLakeStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().filename",
+					"type": "Expression"
+				},
+				"folderPath": "inboun_0302",
+				"fileSystem": "container2"
+			}
+		}
+	}
+}
