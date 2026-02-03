@@ -10,10 +10,6 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": {
-					"value": "@dataset().filepara",
-					"type": "Expression"
-				},
 				"folderPath": "inboun_0302",
 				"fileSystem": "container2"
 			}
