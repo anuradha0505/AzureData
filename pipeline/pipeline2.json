@@ -3,30 +3,9 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "getfilecount",
-				"type": "SetVariable",
-				"dependsOn": [],
-				"policy": {
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"variableName": "count",
-					"value": 3
-				}
-			},
-			{
 				"name": "Until1",
 				"type": "Until",
-				"dependsOn": [
-					{
-						"activity": "getfilecount",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
+				"dependsOn": [],
 				"userProperties": [],
 				"typeProperties": {
 					"expression": {
@@ -80,7 +59,6 @@
 								],
 								"storeSettings": {
 									"type": "AzureBlobStorageReadSettings",
-									"recursive": true,
 									"enablePartitionDiscovery": false
 								},
 								"formatSettings": {
@@ -112,7 +90,7 @@
 							}
 						},
 						{
-							"name": "getCount",
+							"name": "getfilteredcount",
 							"type": "SetVariable",
 							"dependsOn": [
 								{
@@ -140,7 +118,7 @@
 							"type": "IfCondition",
 							"dependsOn": [
 								{
-									"activity": "getCount",
+									"activity": "getfilteredcount",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -181,16 +159,16 @@
 												"type": "BinarySource",
 												"storeSettings": {
 													"type": "AzureBlobFSReadSettings",
-													"recursive": true
+													"recursive": true,
+													"wildcardFolderPath": "inboun_0302",
+													"wildcardFileName": {
+														"value": "@concat('*',variables('filedt'),'*')",
+														"type": "Expression"
+													},
+													"deleteFilesAfterCompletion": false
 												},
 												"formatSettings": {
 													"type": "BinaryReadSettings"
-												}
-											},
-											"sink": {
-												"type": "BinarySink",
-												"storeSettings": {
-													"type": "AzureBlobFSWriteSettings"
 												}
 											},
 											"enableStaging": false
@@ -198,12 +176,6 @@
 										"inputs": [
 											{
 												"referenceName": "Source_pipe45",
-												"type": "DatasetReference"
-											}
-										],
-										"outputs": [
-											{
-												"referenceName": "Sink_pipe45",
 												"type": "DatasetReference"
 											}
 										]
