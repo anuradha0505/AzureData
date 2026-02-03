@@ -171,11 +171,23 @@
 													"type": "BinaryReadSettings"
 												}
 											},
+											"sink": {
+												"type": "BinarySink",
+												"storeSettings": {
+													"type": "AzureBlobFSWriteSettings"
+												}
+											},
 											"enableStaging": false
 										},
 										"inputs": [
 											{
 												"referenceName": "Source_pipe45",
+												"type": "DatasetReference"
+											}
+										],
+										"outputs": [
+											{
+												"referenceName": "Sink_pipe45",
 												"type": "DatasetReference"
 											}
 										]
