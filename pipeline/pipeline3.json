@@ -103,7 +103,7 @@
 				}
 			},
 			{
-				"name": "If Condition1",
+				"name": "if",
 				"type": "IfCondition",
 				"dependsOn": [
 					{
@@ -157,7 +157,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"filepara": {
-											"value": "@activity('Filter1').output.name",
+											"value": "@activity('Filter1').output.value",
 											"type": "Expression"
 										}
 									}
