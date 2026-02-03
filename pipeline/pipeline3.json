@@ -154,12 +154,6 @@
 							"inputs": [
 								{
 									"referenceName": "Source_pipe45",
-									"type": "DatasetReference"
-								}
-							],
-							"outputs": [
-								{
-									"referenceName": "Sink_pipe45",
 									"type": "DatasetReference",
 									"parameters": {
 										"filepara": {
@@ -167,6 +161,12 @@
 											"type": "Expression"
 										}
 									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "Sink_pipe45",
+									"type": "DatasetReference"
 								}
 							]
 						}
