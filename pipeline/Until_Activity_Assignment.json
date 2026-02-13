@@ -1,11 +1,18 @@
 {
-	"name": "pipeline2",
+	"name": "Until_Activity_Assignment",
 	"properties": {
 		"activities": [
 			{
 				"name": "Until1",
 				"type": "Until",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "getflag",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"userProperties": [],
 				"typeProperties": {
 					"expression": {
@@ -59,6 +66,7 @@
 								],
 								"storeSettings": {
 									"type": "AzureBlobStorageReadSettings",
+									"recursive": true,
 									"enablePartitionDiscovery": false
 								},
 								"formatSettings": {
@@ -191,12 +199,47 @@
 												"type": "DatasetReference"
 											}
 										]
+									},
+									{
+										"name": "flagvalue",
+										"type": "SetVariable",
+										"dependsOn": [
+											{
+												"activity": "Copy data1",
+												"dependencyConditions": [
+													"Succeeded"
+												]
+											}
+										],
+										"policy": {
+											"secureOutput": false,
+											"secureInput": false
+										},
+										"userProperties": [],
+										"typeProperties": {
+											"variableName": "flag",
+											"value": "True"
+										}
 									}
 								]
 							}
 						}
 					],
 					"timeout": "0.12:00:00"
+				}
+			},
+			{
+				"name": "getflag",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "flag",
+					"value": "False"
 				}
 			}
 		],
@@ -206,6 +249,9 @@
 			},
 			"count": {
 				"type": "Integer"
+			},
+			"flag": {
+				"type": "String"
 			}
 		},
 		"annotations": []
