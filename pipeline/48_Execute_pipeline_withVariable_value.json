@@ -1,0 +1,84 @@
+{
+	"name": "48_Execute_pipeline_withVariable_value",
+	"properties": {
+		"activities": [
+			{
+				"name": "getName",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "p_name",
+					"value": "Anu"
+				}
+			},
+			{
+				"name": "getLoc",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "getName",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "p_loc",
+					"value": "Pune"
+				}
+			},
+			{
+				"name": "Execute Pipeline1",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "getLoc",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "45_pipeline_parameters",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"prsn_name": {
+							"value": "@variables('p_name')",
+							"type": "Expression"
+						},
+						"prsn_loc": {
+							"value": "@variables('p_loc')",
+							"type": "Expression"
+						}
+					}
+				}
+			}
+		],
+		"variables": {
+			"p_name": {
+				"type": "String"
+			},
+			"p_loc": {
+				"type": "String"
+			}
+		},
+		"annotations": []
+	}
+}

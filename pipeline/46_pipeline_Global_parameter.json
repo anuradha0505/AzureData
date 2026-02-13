@@ -1,0 +1,30 @@
+{
+	"name": "46_pipeline_Global_parameter",
+	"properties": {
+		"activities": [
+			{
+				"name": "getCountryname",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "country",
+					"value": {
+						"value": "@pipeline().globalParameters.country",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"variables": {
+			"country": {
+				"type": "String"
+			}
+		},
+		"annotations": []
+	}
+}
