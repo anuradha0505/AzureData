@@ -1,0 +1,27 @@
+{
+	"name": "49_Trigger_schedule",
+	"properties": {
+		"activities": [
+			{
+				"name": "getmsg",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "msg",
+					"value": "This is Anuradha"
+				}
+			}
+		],
+		"variables": {
+			"msg": {
+				"type": "String"
+			}
+		},
+		"annotations": []
+	}
+}
