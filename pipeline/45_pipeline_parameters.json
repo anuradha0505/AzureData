@@ -1,0 +1,38 @@
+{
+	"name": "45_pipeline_parameters",
+	"properties": {
+		"activities": [
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "msg",
+					"value": {
+						"value": "@concat('Person name is ',pipeline().parameters.prsn_name,' and paerson loc is ',pipeline().parameters.prsn_loc)",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"prsn_name": {
+				"type": "string"
+			},
+			"prsn_loc": {
+				"type": "string"
+			}
+		},
+		"variables": {
+			"msg": {
+				"type": "String"
+			}
+		},
+		"annotations": []
+	}
+}
