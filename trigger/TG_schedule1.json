@@ -1,0 +1,17 @@
+{
+	"name": "TG_schedule1",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Minute",
+				"interval": 2,
+				"startTime": "2026-02-13T23:10:00",
+				"timeZone": "India Standard Time"
+			}
+		}
+	}
+}
